@@ -1,17 +1,17 @@
 # Written by app/release in incantery/warlock at each release.
 cask "warlock" do
-  version "0.1.0"
-  sha256 "2df07529d97bc8c74676a4c9a7578e4dd9024062820aaa0b671f0384593b84dd"
+  version "0.2.0"
+  sha256 "9912b7c05465461c28a116234a977305c4dc71a06624b7ca088ac96b852b669d"
 
   # The release is on a private repo: Homebrew fetches it as you, with
   # HOMEBREW_GITHUB_API_TOKEN (a token that can read incantery/warlock).
-  url "https://api.github.com/repos/incantery/warlock/releases/assets/768889955",
+  url "https://api.github.com/repos/incantery/warlock/releases/assets/769955528",
       header: [
         "Accept: application/octet-stream",
         "Authorization: Bearer #{ENV.fetch("HOMEBREW_GITHUB_API_TOKEN", "")}",
       ]
   name "Warlock"
-  desc "Terminal for the work and agents warlock keeps on your machine"
+  desc "Terminal, and the warlock that keeps your work and agents running behind it"
   homepage "https://github.com/incantery/warlock"
 
   livecheck do
@@ -23,4 +23,17 @@ cask "warlock" do
 
   app "Warlock.app"
   binary "#{appdir}/Warlock.app/Contents/MacOS/warlock-desktop", target: "warlock-app"
+  # The warlock the app brings and runs (it sets it up when first opened).
+  binary "#{appdir}/Warlock.app/Contents/MacOS/warlock"
+
+  uninstall launchctl: "com.incantery.warlock",
+            quit:      "com.incantery.warlock.desktop"
+
+  zap trash: [
+    "~/.config/warlock",
+    "~/.local/share/warlock",
+    "~/Library/Logs/warlock.log",
+  ]
+
+  caveats "Open Warlock once: it sets up warlock to run on this Mac, and again after an upgrade."
 end
