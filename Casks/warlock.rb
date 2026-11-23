@@ -1,7 +1,7 @@
 # Written by app/release in incantery/warlock at each release.
 cask "warlock" do
-  version "0.2.5"
-  sha256 "e566f07d645f247512ab480d275d53fe89ff6eba81c1e09bcf4c4fd9d0e48630"
+  version "0.2.6"
+  sha256 "1347a8d22b2bdb405f3a5a68e23be3ac60a7b30d7a29aabaca8bd7ae23b8c091"
 
   url "https://github.com/incantery/warlock-app/releases/download/app-v#{version}/Warlock-#{version}-arm64.zip"
   name "Warlock"
@@ -11,6 +11,9 @@ cask "warlock" do
   livecheck do
     skip "Written at each release."
   end
+
+  # The app keeps itself current once installed.
+  auto_updates true
 
   depends_on arch: :arm64
   depends_on :macos
