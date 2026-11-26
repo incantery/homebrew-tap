@@ -1,7 +1,7 @@
 # Written by app/release in incantery/warlock at each release.
 cask "warlock" do
-  version "0.2.6"
-  sha256 "1347a8d22b2bdb405f3a5a68e23be3ac60a7b30d7a29aabaca8bd7ae23b8c091"
+  version "0.2.7"
+  sha256 "8912fb2b380729b24b24316956f94e80d6416c423919780829a32218ca5dc47d"
 
   url "https://github.com/incantery/warlock-app/releases/download/app-v#{version}/Warlock-#{version}-arm64.zip"
   name "Warlock"
